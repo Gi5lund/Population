@@ -26,8 +26,11 @@ public class Citizen
 		private String email;
 		@Column(name = "phone_No.")
 		private String  phone;
-		@ManyToOne
+		@ManyToOne //mange citisens kan bo på samme address
+		@JoinColumn(name="adresse_id")
 		Address address;
+		@ManyToOne
+		Town town;
 
 		public Citizen(String firstName, String lastName, String email, String phone)
 			{

@@ -18,12 +18,12 @@ public class Town
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private int id;
-		@Column(name = "city_name",length = 100,nullable = false)
+		@Column(name = "city_name",length = 100,nullable = true)
 		private String name;
-		@Column(name = "city_zip",nullable = false)
-		private int zipCode;
-		@Column(name = "current_mayor",length = 121,nullable = false)
+		@Column(name = "city_zip",nullable = true)
+		private String zipCode;
+		@Column(name = "current_mayor",length = 121,nullable = true)
 		private String mayor;
-		@Column(name = "number_of_schools")
-		private int schools;
+		@Column(name = "schools")
+		private String schools;
 	}

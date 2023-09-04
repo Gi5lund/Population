@@ -26,12 +26,17 @@ public class Address
 		@Column(name = "city",nullable = false,length = 100)
 		private String city;
 		@Column(name = "address_zip")
-		private int zip;
-		@OneToMany(mappedBy = "address",cascade = CascadeType.PERSIST)
+		private String zip;
 
-		List<Citizen> citizens = new ArrayList();
+		@OneToMany(mappedBy = "address", cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
+//	@OneToMany
+	//@JoinColumn(name = "address_id") //hm skal den med
+	private List<Citizen> citizens = new ArrayList();
 
-		public Address(String street, String city, int zip)
+
+
+
+		public Address(String street, String city, String zip)
 			{
 				this.street = street;
 				this.city = city;
@@ -39,9 +44,8 @@ public class Address
 			}
 
 		public void addCitizen(Citizen c){
-			ArrayList<Citizen> habitants= (ArrayList<Citizen>) this.getCitizens();
-			habitants.add(c);
-			this.setCitizens(habitants);
+			c.setAddress(this);
+			citizens.add(c);
 		}
 
 
